@@ -1,14 +1,26 @@
 package guru.springframework.controllers;
 
+import guru.springframework.RecipeService.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class IndexController {
 
-    @RequestMapping({"", "/", "index", "/index/html", "/index"})
-    public String getIndexPage() {
-        System.out.println("Some message to say...1324678-6667+");
+    private final RecipeService recipeService;
+
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
+
+    @RequestMapping({"", "/", "/index"})
+    public String getIndexPage(Model model) {
+
+        model.addAttribute("recipes", recipeService.getRecipes());
+
         return "index";
     }
 }
