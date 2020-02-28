@@ -1,8 +1,7 @@
 package guru.springframework.doamin;
 
-import org.hibernate.engine.internal.Cascade;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -10,7 +9,6 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String description;
     private Integer prepareTime;
@@ -23,9 +21,19 @@ public class Recipe {
     private Byte[] image;
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     public Long getId() {
         return id;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
     }
 
     public void setId(Long id) {
