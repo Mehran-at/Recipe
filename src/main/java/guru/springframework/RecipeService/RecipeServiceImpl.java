@@ -1,8 +1,7 @@
 package guru.springframework.RecipeService;
 
-import guru.springframework.doamin.Recipe;
+import guru.springframework.domain.Recipe;
 import guru.springframework.repository.RecipeRepository;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
